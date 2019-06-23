@@ -26,3 +26,8 @@ X_test.npy - the test set provided in the same format as the training set, but w
 y_1.csv - The targets for the regressions training. The k-th row contains the age of the k-th sample in X_train.npy.
 
 sampleSubmission.csv - a sample submission file in the correct format. The project framework saves the correct format, but we also provide a description here. Your submissions should have two columns and 139 = 1+138 rows (one row for headers and then one row for each test sample, no more and no less). The first column is headed by "ID" and then simply runs from 1 to 138, the second column is headed by "Prediction" where any consequent row k+1 contains your prediction for the k-th sample of X_test.npy.
+
+# My final score
+
+MSE = 70.44930
+Ranked 32%
