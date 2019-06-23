@@ -1,0 +1,16 @@
+module: ml_project.pipeline
+class: Pipeline
+params:
+  class_list:
+    - module: ml_project.models.feature_selection
+      class: LayerHist
+      params:
+        bins: 1000
+    - module: ml_project.models.preprocessing
+      class: FeatureReduction
+    - module: sklearn.preprocessing
+      class: StandardScaler
+    - module: sklearn.linear_model
+      class: Ridge
+      params:
+        alpha: 1
