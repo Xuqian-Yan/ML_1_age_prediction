@@ -31,4 +31,4 @@ sampleSubmission.csv - a sample submission file in the correct format. The proje
 
 MSE = 70.44930
 
-Ranked 32%
+Ranked 41%
