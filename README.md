@@ -30,4 +30,5 @@ sampleSubmission.csv - a sample submission file in the correct format. The proje
 # My final score
 
 MSE = 70.44930
+
 Ranked 32%
