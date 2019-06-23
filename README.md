@@ -1,4 +1,4 @@
-# ML_1_age_prediction, original project description from https://www.kaggle.com/c/ml-project-1/overview
+# The original project description from https://www.kaggle.com/c/ml-project-1/overview
 
 # Description
 
@@ -20,6 +20,9 @@ The MSE metric weights large deviations much heavier than small deviations. Cons
 # Data
 
 X_train.npy - the training set provided as numpy array with shape (278, 6443008). The rows run over samples, the columns over features. Basically, each feature is a different voxel (3D pixel) of the image. You can get the 3D structure back with numpy. reshape(X_train, (-1, 176, 208, 176)).
+
 X_test.npy - the test set provided in the same format as the training set, but with shape (138, 6443008).
+
 y_1.csv - The targets for the regressions training. The k-th row contains the age of the k-th sample in X_train.npy.
+
 sampleSubmission.csv - a sample submission file in the correct format. The project framework saves the correct format, but we also provide a description here. Your submissions should have two columns and 139 = 1+138 rows (one row for headers and then one row for each test sample, no more and no less). The first column is headed by "ID" and then simply runs from 1 to 138, the second column is headed by "Prediction" where any consequent row k+1 contains your prediction for the k-th sample of X_test.npy.
