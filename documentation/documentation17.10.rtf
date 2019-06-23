@@ -1,0 +1,749 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fnil\fcharset0 Monaco;\f2\fnil\fcharset0 Menlo-Bold;
+\f3\fnil\fcharset0 Menlo-Italic;\f4\fmodern\fcharset0 Courier;\f5\fswiss\fcharset0 Helvetica;
+\f6\fnil\fcharset134 PingFangSC-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;\red0\green0\blue0;
+\red244\green245\blue244;\red83\green85\blue2;\red0\green0\blue109;\red109\green109\blue109;\red160\green0\blue163;
+\red128\green63\blue122;\red0\green0\blue254;\red15\green112\blue3;\red255\green255\blue255;}
+{\*\expandedcolortbl;;\csgray\c0;\csgray\c100000;\cssrgb\c0\c0\c0;
+\cssrgb\c96471\c96863\c96471;\cssrgb\c40000\c40000\c0;\csgenericrgb\c0\c0\c42745;\csgenericrgb\c42745\c42745\c42745;\csgenericrgb\c62745\c0\c63922;
+\csgenericrgb\c50196\c24706\c47843;\csgenericrgb\c0\c0\c99608;\csgenericrgb\c5882\c43922\c1176;\cssrgb\c100000\c100000\c100000;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \cb3 \CocoaLigature0 source activate ml_project\
+cd ml-project\
+open -a \'91PyCharm CE\'92 .config.yaml\
+\
+git commit -am 'self defined variance threshold'\
+\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f1\fs26 \cf4 \cb5 \expnd0\expndtw0\kerning0
+\CocoaLigature1 scoring\cf6 :\cf4  neg_mean_squared_error
+\f0\fs22 \cf2 \cb3 \kerning1\expnd0\expndtw0 \CocoaLigature0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf2 ####################################
+\f2\b\fs24 \cf7 \cb1 \CocoaLigature1 \
+\
+class 
+\f0\b0 \cf0 FeatureReduction(VarianceThreshold):\
+    
+\f3\i \cf8 """VarianceThreshold"""\
+    
+\f2\i0\b \cf7 def 
+\f0\b0 \cf9 __init__\cf0 (\cf10 self\cf0 , threshold=\cf11 0.\cf0 ):\
+        \cf10 self\cf0 .threshold = threshold\
+        \
+    
+\f2\b \cf7 def 
+\f0\b0 \cf0 fit(\cf10 self\cf0 , \cf8 X\cf0 , \cf8 y=None\cf0 ):\
+        
+\f2\b \cf7 return 
+\f0\b0 \cf10 self\
+    \
+    
+\f2\b \cf7 def 
+\f0\b0 \cf0 transform(\cf10 self\cf0 ,X,\cf8 y=None\cf0 ):\
+        X = check_array(X)\
+        
+\f2\b \cf7 print
+\f0\b0 \cf0 (
+\f2\b \cf12 'some stdout'
+\f0\b0 \cf0 )\
+        f = VarianceThreshold(\cf11 30000\cf0 )\
+        X_new = f.fit_transform(X)\
+        
+\f2\b \cf7 return 
+\f0\b0 \cf0 X_new\
+################################\
+
+\fs22 \cf2 \cb3 \CocoaLigature0 smt run --config .config.yaml -X data/20171016-210750threshold30000/X_new.npy -a fit_transform\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f2\b\fs24 \cf7 \cb1 \CocoaLigature1 module: 
+\f0\b0 \cf0 ml_project.models.preprocessing\
+
+\f2\b \cf7 class: 
+\f0\b0 \cf0 FeatureReduction\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\fs22 \cf2 \cb3 \CocoaLigature0 20171017-205020\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f4\fs28 \cf4 \cb13 \expnd0\expndtw0\kerning0
+\CocoaLigature1 (278, 1329903)=>(278, 132991)\
+###########################\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \cb3 \kerning1\expnd0\expndtw0 \CocoaLigature0 smt run --config .config.yaml -X data/X_train.npy -y data/y_1.csv -a fit\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f4\fs28 \cf4 \cb13 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f2\b\fs24 \cf7 \cb1 \kerning1\expnd0\expndtw0 module: 
+\f0\b0 \cf0 ml_project.pipeline\
+
+\f2\b \cf7 class: 
+\f0\b0 \cf0 Pipeline\
+
+\f2\b \cf7 params:\
+  class_list:\
+    
+\f0\b0 \cf0 - 
+\f2\b \cf7 module: 
+\f0\b0 \cf0 ml_project.models.preprocessing\
+      
+\f2\b \cf7 class: 
+\f0\b0 \cf0 FeatureReduction\
+    - 
+\f2\b \cf7 module: 
+\f0\b0 \cf0 sklearn.decomposition\
+      
+\f2\b \cf7 class: 
+\f0\b0 \cf0 PCA\
+    - 
+\f2\b \cf7 module: 
+\f0\b0 \cf0 ml_project.models.regression\
+      
+\f2\b \cf7 class: 
+\f0\b0 \cf0 KernelEstimator\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f4\fs28 \cf4 \cb13 \expnd0\expndtw0\kerning0
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \cb3 \kerning1\expnd0\expndtw0 \CocoaLigature0 20171017-205543\
+##################################\
+smt run --model data/20171017-205543/Pipeline.pkl -X data/X_test.npy -a predict\
+\
+20171017-210028\
+###############################\
+smt run --config .config.yaml -X data/X_train.npy -y data/y_1.csv -a fit
+\f4\fs28 \cf4 \cb13 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 \kerning1\expnd0\expndtw0 \
+
+\f2\b \cf7 module: 
+\f0\b0 \cf0 ml_project.model_selection\
+
+\f2\b \cf7 class: 
+\f0\b0 \cf0 GridSearchCV\
+
+\f2\b \cf7 params:\
+  est_module: 
+\f0\b0 \cf0 ml_project.pipeline\
+  
+\f2\b \cf7 est_class: 
+\f0\b0 \cf0 Pipeline\
+  
+\f2\b \cf7 est_params:\
+    
+\f0\b0 \cf0 - 
+\f2\b \cf7 module: 
+\f0\b0 \cf0 ml_project.models.preprocessing\
+      
+\f2\b \cf7 class: 
+\f0\b0 \cf0 FeatureReduction\
+    - 
+\f2\b \cf7 module: 
+\f0\b0 \cf0 sklearn.decomposition\
+      
+\f2\b \cf7 class: 
+\f0\b0 \cf0 PCA\
+    - 
+\f2\b \cf7 module: 
+\f0\b0 \cf0 ml_project.models.regression\
+      
+\f2\b \cf7 class: 
+\f0\b0 \cf0 KernelEstimator\
+  
+\f2\b \cf7 param_grid:\
+    PCA__n_components:\
+      
+\f0\b0 \cf0 - 30\
+      - 150\
+      - 500\
+  
+\f2\b \cf7 cv:\
+    module: 
+\f0\b0 \cf0 sklearn.model_selection\
+    
+\f2\b \cf7 class: 
+\f0\b0 \cf0 KFold\
+    
+\f2\b \cf7 params:\
+      n_splits: 
+\f0\b0 \cf0 3\
+      
+\f2\b \cf7 shuffle: 
+\f0\b0 \cf0 True\
+      
+\f2\b \cf7 random_state: 
+\f0\b0 \cf0 37\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\fs22 \cf2 \cb3 \CocoaLigature0 20171017-210840\
+best: 30; MSE: 
+\f5\fs24 \cf0 \cb1 \CocoaLigature1 [ 122.0969021   102.10325425  100.75334299]\
+###########################
+\f0 \
+
+\fs22 \cf2 \cb3 \CocoaLigature0 smt run --model data/20171017-210840/GridSearchCV.pkl -X data/X_test.npy -a predict\
+\
+20171017-214239\
+=> many negative values\
+###########################\
+smt run --config .config.yaml -X data/X_train.npy -a fit_transform\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f2\b\fs24 \cf7 \cb1 \CocoaLigature1 module: 
+\f0\b0 \cf0 ml_project.models.preprocessing\
+
+\f2\b \cf7 class: 
+\f0\b0 \cf0 Flatten\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\fs22 \cf2 \cb3 \CocoaLigature0 \
+20171019-173041\
+=>
+\f4\fs28 \cf4 \cb13 \expnd0\expndtw0\kerning0
+\CocoaLigature1 (278, 104192)
+\f0\fs22 \cf2 \cb3 \kerning1\expnd0\expndtw0 \CocoaLigature0 \
+###########################\
+smt run --config .config.yaml -X data/20171019-173041/X_new.npy -a fit_transform\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f2\b\fs24 \cf7 \cb1 \CocoaLigature1 module: 
+\f0\b0 \cf0 ml_project.models.preprocessing\
+
+\f2\b \cf7 class: 
+\f0\b0 \cf0 FeatureReduction\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\fs22 \cf2 \cb3 \CocoaLigature0 \
+20171019-174203\
+=> 
+\f4\fs28 \cf4 \cb13 \expnd0\expndtw0\kerning0
+\CocoaLigature1 (278, 52096)
+\f0\fs22 \cf2 \cb3 \kerning1\expnd0\expndtw0 \CocoaLigature0 \
+###########################\
+smt run --config .config.yaml -X data/X_train.npy -a fit_transform\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f2\b\fs24 \cf7 \cb1 \CocoaLigature1 module: 
+\f0\b0 \cf0 ml_project.pipeline\
+
+\f2\b \cf7 class: 
+\f0\b0 \cf0 Pipeline\
+
+\f2\b \cf7 params:\
+  class_list:\
+    
+\f0\b0 \cf0 - 
+\f2\b \cf7 module: 
+\f0\b0 \cf0 ml_project.models.preprocessing\
+      
+\f2\b \cf7 class: 
+\f0\b0 \cf0 Flatten\
+    - 
+\f2\b \cf7 module: 
+\f0\b0 \cf0 ml_project.models.preprocessing\
+      
+\f2\b \cf7 class: 
+\f0\b0 \cf0 FeatureReduction\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\fs22 \cf2 \cb3 \CocoaLigature0 \
+TypeError: _transform() takes 2 positional arguments but 3 were given\
+##############################\
+flatted data + variance threshold 50% + pca 150 + linear:\
+\
+smt run --config .config.yaml -X data/20171019-173041/X_new.npy -y data/y_1.csv -a fit\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f2\b\fs24 \cf7 \cb1 \CocoaLigature1 module: 
+\f0\b0 \cf0 ml_project.model_selection\
+
+\f2\b \cf7 class: 
+\f0\b0 \cf0 GridSearchCV\
+
+\f2\b \cf7 params:\
+  est_module: 
+\f0\b0 \cf0 ml_project.pipeline\
+  
+\f2\b \cf7 est_class: 
+\f0\b0 \cf0 Pipeline\
+  
+\f2\b \cf7 est_params:\
+    
+\f0\b0 \cf0 - 
+\f2\b \cf7 module: 
+\f0\b0 \cf0 ml_project.models.preprocessing\
+      
+\f2\b \cf7 class: 
+\f0\b0 \cf0 FeatureReduction\
+    - 
+\f2\b \cf7 module: 
+\f0\b0 \cf0 sklearn.decomposition\
+      
+\f2\b \cf7 class: 
+\f0\b0 \cf0 PCA\
+    - 
+\f2\b \cf7 module: 
+\f0\b0 \cf0 sklearn.linear_model\
+      
+\f2\b \cf7 class: 
+\f0\b0 \cf0 LinearRegression\
+  
+\f2\b \cf7 param_grid:\
+    PCA__n_components:\
+      
+\f0\b0 \cf0 - 150\
+  
+\f2\b \cf7 scoring: 
+\f0\b0 \cf0 neg_mean_squared_error\
+  
+\f2\b \cf7 cv:\
+    module: 
+\f0\b0 \cf0 sklearn.model_selection\
+    
+\f2\b \cf7 class: 
+\f0\b0 \cf0 KFold\
+    
+\f2\b \cf7 params:\
+      n_splits: 
+\f0\b0 \cf0 3\
+      
+\f2\b \cf7 shuffle: 
+\f0\b0 \cf0 True\
+      
+\f2\b \cf7 random_state: 
+\f0\b0 \cf0 37\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\fs22 \cf2 \cb3 \CocoaLigature0 20171019-210009\
+=> MSE 90.3\
+####################################\
+ridge:\
+smt run --config .config.yaml -X data/20171019-173041/X_new.npy -y data/y_1.csv -a fit\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f2\b\fs24 \cf7 \cb1 \CocoaLigature1 module: 
+\f0\b0 \cf0 ml_project.model_selection\
+
+\f2\b \cf7 class: 
+\f0\b0 \cf0 GridSearchCV\
+
+\f2\b \cf7 params:\
+  est_module: 
+\f0\b0 \cf0 ml_project.pipeline\
+  
+\f2\b \cf7 est_class: 
+\f0\b0 \cf0 Pipeline\
+  
+\f2\b \cf7 est_params:\
+    
+\f0\b0 \cf0 - 
+\f2\b \cf7 module: 
+\f0\b0 \cf0 ml_project.models.preprocessing\
+      
+\f2\b \cf7 class: 
+\f0\b0 \cf0 FeatureReduction\
+    - 
+\f2\b \cf7 module: 
+\f0\b0 \cf0 sklearn.decomposition\
+      
+\f2\b \cf7 class: 
+\f0\b0 \cf0 PCA\
+    - 
+\f2\b \cf7 module: 
+\f0\b0 \cf0 sklearn.linear_model\
+      
+\f2\b \cf7 class: 
+\f0\b0 \cf0 Ridge\
+  
+\f2\b \cf7 param_grid:\
+    Ridge__alpha:\
+      
+\f0\b0 \cf0 - 0.3\
+      - 0.5\
+      - 1\
+  
+\f2\b \cf7 scoring: 
+\f0\b0 \cf0 neg_mean_squared_error\
+  
+\f2\b \cf7 cv:\
+    module: 
+\f0\b0 \cf0 sklearn.model_selection\
+    
+\f2\b \cf7 class: 
+\f0\b0 \cf0 KFold\
+    
+\f2\b \cf7 params:\
+      n_splits: 
+\f0\b0 \cf0 3\
+      
+\f2\b \cf7 shuffle: 
+\f0\b0 \cf0 True\
+      
+\f2\b \cf7 random_state: 
+\f0\b0 \cf0 37\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\fs22 \cf2 \cb3 \CocoaLigature0 20171019-211057\
+=> alpha =1: MSE 90.6\
+#################################
+\fs24 \cf0 \cb1 \CocoaLigature1 \
+
+\fs22 \cf2 \cb3 \CocoaLigature0 smt run --model data/20171019-210009/GridSearchCV.pkl -X data/X_test.npy -a predict\
+\
+20171019-211633\
+=> all are 63 year old\
+#################################\
+flattened data + threshold 20% + scaling + ridge:\
+\
+smt run --config .config.yaml -X data/20171019-173041/X_new.npy -y data/y_1.csv -a fit\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f2\b\fs24 \cf7 \cb1 \CocoaLigature1 module: 
+\f0\b0 \cf0 ml_project.model_selection\
+
+\f2\b \cf7 class: 
+\f0\b0 \cf0 GridSearchCV\
+
+\f2\b \cf7 params:\
+  est_module: 
+\f0\b0 \cf0 ml_project.pipeline\
+  
+\f2\b \cf7 est_class: 
+\f0\b0 \cf0 Pipeline\
+  
+\f2\b \cf7 est_params:\
+    
+\f0\b0 \cf0 - 
+\f2\b \cf7 module: 
+\f0\b0 \cf0 ml_project.models.preprocessing\
+      
+\f2\b \cf7 class: 
+\f0\b0 \cf0 FeatureReduction\
+    - 
+\f2\b \cf7 module: 
+\f0\b0 \cf0 sklearn.preprocessing\
+      
+\f2\b \cf7 class: 
+\f0\b0 \cf0 StandardScaler\
+    - 
+\f2\b \cf7 module: 
+\f0\b0 \cf0 sklearn.linear_model\
+      
+\f2\b \cf7 class: 
+\f0\b0 \cf0 Ridge\
+  
+\f2\b \cf7 param_grid:\
+    Ridge__alpha:\
+      
+\f0\b0 \cf0 - 1\
+  
+\f2\b \cf7 scoring: 
+\f0\b0 \cf0 neg_mean_squared_error\
+  
+\f2\b \cf7 cv:\
+    module: 
+\f0\b0 \cf0 sklearn.model_selection\
+    
+\f2\b \cf7 class: 
+\f0\b0 \cf0 KFold\
+    
+\f2\b \cf7 params:\
+      n_splits: 
+\f0\b0 \cf0 3\
+      
+\f2\b \cf7 shuffle: 
+\f0\b0 \cf0 True\
+      
+\f2\b \cf7 random_state: 
+\f0\b0 \cf0 37\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\fs22 \cf2 \cb3 \CocoaLigature0 20171019-213341\
+=> MSE 92\
+###################################\
+smt run --config .config.yaml -X data/X_train.npy -y data/y_1.csv -a fit\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f2\b \cf7 module: 
+\f0\b0 \cf0 ml_project.model_selection\
+
+\f2\b \cf7 class: 
+\f0\b0 \cf0 GridSearchCV\
+
+\f2\b \cf7 params:\
+  est_module: 
+\f0\b0 \cf0 ml_project.pipeline\
+  
+\f2\b \cf7 est_class: 
+\f0\b0 \cf0 Pipeline\
+  
+\f2\b \cf7 est_params:\
+    
+\f0\b0 \cf0 - 
+\f2\b \cf7 module: 
+\f0\b0 \cf0 ml_project.models.preprocessing\
+      
+\f2\b \cf7 class: 
+\f0\b0 \cf0 FeatureReduction\
+    - 
+\f2\b \cf7 module: 
+\f0\b0 \cf0 sklearn.preprocessing\
+      
+\f2\b \cf7 class: 
+\f0\b0 \cf0 StandardScaler\
+    - 
+\f2\b \cf7 module: 
+\f0\b0 \cf0 ml_project.models.regression\
+      
+\f2\b \cf7 class: 
+\f0\b0 \cf0 KernelEstimator\
+  
+\f2\b \cf7 param_grid:\
+    FeatureReduction__percentage:\
+      
+\f0\b0 \cf0 - 90\
+  
+\f2\b \cf7 scoring: 
+\f0\b0 \cf0 neg_mean_squared_error\
+  
+\f2\b \cf7 cv:\
+    module: 
+\f0\b0 \cf0 sklearn.model_selection\
+    
+\f2\b \cf7 class: 
+\f0\b0 \cf0 KFold\
+    
+\f2\b \cf7 params:\
+      n_splits: 
+\f0\b0 \cf0 3\
+      
+\f2\b \cf7 shuffle: 
+\f0\b0 \cf0 True\
+      
+\f2\b \cf7 random_state: 
+\f0\b0 \cf0 37\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\fs22 \cf2 \cb3 \CocoaLigature0 20171019-213835\
+=> MSE 104\
+###############################\
+original data + threshold 90% + random selection + scaling + kernel:\
+\
+smt run --config .config.yaml -X data/X_train.npy -y data/y_1.csv -a fit\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f2\b \cf7 module: 
+\f0\b0 \cf0 ml_project.model_selection\
+
+\f2\b \cf7 class: 
+\f0\b0 \cf0 GridSearchCV\
+
+\f2\b \cf7 params:\
+  est_module: 
+\f0\b0 \cf0 ml_project.pipeline\
+  
+\f2\b \cf7 est_class: 
+\f0\b0 \cf0 Pipeline\
+  
+\f2\b \cf7 est_params:\
+    
+\f0\b0 \cf0 - 
+\f2\b \cf7 module: 
+\f0\b0 \cf0 ml_project.models.preprocessing\
+      
+\f2\b \cf7 class: 
+\f0\b0 \cf0 FeatureReduction\
+    - 
+\f2\b \cf7 module: 
+\f0\b0 \cf0 ml_project.models.feature_selection\
+      
+\f2\b \cf7 class: 
+\f0\b0 \cf0 RandomSelection\
+      
+\f2\b \cf7 params:\
+        random_state: 
+\f0\b0 \cf0 37\
+    - 
+\f2\b \cf7 module: 
+\f0\b0 \cf0 sklearn.preprocessing\
+      
+\f2\b \cf7 class: 
+\f0\b0 \cf0 StandardScaler\
+    - 
+\f2\b \cf7 module: 
+\f0\b0 \cf0 ml_project.models.regression\
+      
+\f2\b \cf7 class: 
+\f0\b0 \cf0 KernelEstimator\
+  
+\f2\b \cf7 param_grid:\
+    RandomSelection__n_components:\
+      
+\f0\b0 \cf0 - 1000\
+      - 3000\
+      - 10000\
+  
+\f2\b \cf7 scoring: 
+\f0\b0 \cf0 neg_mean_squared_error\
+  
+\f2\b \cf7 cv:\
+    module: 
+\f0\b0 \cf0 sklearn.model_selection\
+    
+\f2\b \cf7 class: 
+\f0\b0 \cf0 KFold\
+    
+\f2\b \cf7 params:\
+      n_splits: 
+\f0\b0 \cf0 3\
+      
+\f2\b \cf7 shuffle: 
+\f0\b0 \cf0 True\
+      
+\f2\b \cf7 random_state: 
+\f0\b0 \cf0 37\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\fs22 \cf2 \cb3 \CocoaLigature0 20171019-214745\
+=
+\f6 >10000 components: MSE 106\
+#############################\
+variance threshold () +
+\f0  histogram 3000bins, (0-5000)
+\fs24 \cf0 \cb1 \CocoaLigature1 \
+
+\fs22 \cf2 \cb3 \CocoaLigature0 smt run --config .config.yaml -X data/X_train.npy -a fit_transform
+\fs24 \cf0 \cb1 \CocoaLigature1 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f2\b \cf7 module: 
+\f0\b0 \cf0 ml_project.models.preprocessing\
+
+\f2\b \cf7 class: 
+\f0\b0 \cf0 Hist\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\fs22 \cf2 \cb3 \CocoaLigature0 20171019-231816\
+=> 
+\f4\fs28 \cf4 \cb13 \expnd0\expndtw0\kerning0
+\CocoaLigature1 (278, 1000)\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 \kerning1\expnd0\expndtw0 ##############################\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f6\fs22 \cf2 \cb3 \CocoaLigature0 variance threshold () +
+\f0  histogram 3000bins, (0-5000)+kernel:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\fs22 \cf2 \cb3 \CocoaLigature0 smt run --config .config.yaml -X data/X_train.npy -y data/y_1.csv -a fit\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f2\b\fs24 \cf7 \cb1 \CocoaLigature1 module: 
+\f0\b0 \cf0 ml_project.model_selection\
+
+\f2\b \cf7 class: 
+\f0\b0 \cf0 GridSearchCV\
+
+\f2\b \cf7 params:\
+  est_module: 
+\f0\b0 \cf0 ml_project.pipeline\
+  
+\f2\b \cf7 est_class: 
+\f0\b0 \cf0 Pipeline\
+  
+\f2\b \cf7 est_params:\
+    
+\f0\b0 \cf0 - 
+\f2\b \cf7 module: 
+\f0\b0 \cf0 ml_project.models.preprocessing\
+      
+\f2\b \cf7 class: 
+\f0\b0 \cf0 Hist\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f3\i \cf8 #    - module: sklearn.preprocessing\
+#      class: StandardScaler\
+    
+\f0\i0 \cf0 - 
+\f2\b \cf7 module: 
+\f0\b0 \cf0 ml_project.models.regression\
+      
+\f2\b \cf7 class: 
+\f0\b0 \cf0 KernelEstimator\
+  
+\f2\b \cf7 param_grid:\
+    Hist__bin:\
+      
+\f0\b0 \cf0 - 1000\
+      - 3000\
+  
+\f2\b \cf7 scoring: 
+\f0\b0 \cf0 neg_mean_squared_error\
+  
+\f2\b \cf7 cv:\
+    module: 
+\f0\b0 \cf0 sklearn.model_selection\
+    
+\f2\b \cf7 class: 
+\f0\b0 \cf0 KFold\
+    
+\f2\b \cf7 params:\
+      n_splits: 
+\f0\b0 \cf0 3\
+      
+\f2\b \cf7 shuffle: 
+\f0\b0 \cf0 True\
+      
+\f2\b \cf7 random_state: 
+\f0\b0 \cf0 37\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\fs22 \cf2 \cb3 \CocoaLigature0 20171019-232638\
+=> bin: 3000, MSE 92\
+#################################\
+smt run --config .config.yaml -X data/X_train.npy -y data/y_1.csv -a fit\
+\
+20171020-002001\
+=>bin: 5000, MSE 87}
